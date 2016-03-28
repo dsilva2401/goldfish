@@ -7,6 +7,6 @@ module.exports = function ($libs) {
 	$libs.bodyParser = require('body-parser');
 	$libs.methodOverride = require('method-override');
 	$libs.compress = require('compression');
-	$libs.logger = require('morgan');
+	$libs.morgan = require('morgan');
 
 }
