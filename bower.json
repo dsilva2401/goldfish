@@ -1,0 +1,22 @@
+{
+  "name": "goldfish",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Diego Silva <dsilva2401@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/dsilva2401/goldfish",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/front/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.3"
+  }
+}

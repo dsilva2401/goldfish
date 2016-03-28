@@ -1,0 +1,36 @@
+{
+  "name": "goldfish",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dsilva2401/goldfish.git"
+  },
+  "keywords": [],
+  "author": "Diego Silva <dsilva2401@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dsilva2401/goldfish/issues"
+  },
+  "homepage": "https://github.com/dsilva2401/goldfish",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "compression": "^1.6.1",
+    "cookie-parser": "^1.4.1",
+    "express-bubble": "^0.1.1",
+    "md5": "^2.1.0",
+    "method-override": "^2.3.5",
+    "morgan": "^1.7.0",
+    "pg": "^4.5.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.20.0",
+    "sqlite3": "^3.1.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
