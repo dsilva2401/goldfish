@@ -12,16 +12,10 @@ module.exports = function (db, DataTypes) {
 
 		var Credential = db.define('Credential', {
 			email: { type: DataTypes.STRING, unique: true },
-			username: { type: DataTypes.STRING, unique: true, allowNull: true },
 			password: DataTypes.STRING
 		});
 
 		var SessionKey = db.define('SessionKey', {
-			key: { type: DataTypes.STRING, unique: true, allowNull: false }
-		});
-
-		var WMSessionKey = db.define('WMSessionKey', {
-			username: DataTypes.STRING,
 			key: { type: DataTypes.STRING, unique: true, allowNull: false }
 		});
 

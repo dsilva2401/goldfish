@@ -9,7 +9,7 @@
 	config.databases = JSON.parse(fs.readFileSync( path.join(__dirname, 'config', 'databases.json'), 'utf-8'));
 
 // Main bubble
-	var bubble = new Bubble(config, true);
+	var bubble = new Bubble(config);
 
 // Enable logging
 	bubble.enableLogging();
@@ -23,11 +23,17 @@
 // Setup databases
 	bubble.run(require('./databases'));
 
-// Setup transporters
-	bubble.run(require('./transporters'));
+// Setup http-routes
+	bubble.run(require('./http-routes'));
 
-// Setup settings
-	bubble.run(require('./settings'));
+// Init bubble
+	bubble.run(require('./init'));
+
+// Include childs
+	var childs = require('./childs')(bubble);
+	Object.keys(childs).forEach(function (child) {
+		bubble.install(child, childs[child]);
+	});
 
 // Export bubble
 	module.exports = bubble;
