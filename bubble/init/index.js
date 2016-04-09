@@ -14,6 +14,10 @@ module.exports = function ($config, $app, $express, $interfaces) {
 	// Bower components
 	$app.use('*/libs', $express.static('bower_components'));
 
+	// Statics
+	var staticsPath = $interfaces.libs('path').join(__dirname, '..', 'statics');
+	$app.use('/statics', $express.static(staticsPath));
+
 	// Set Access Control
 	$app.use(function (req, res, next) {
 		res.header('Access-Control-Allow-Origin', '*');

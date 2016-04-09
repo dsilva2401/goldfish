@@ -22,5 +22,36 @@ var path = require('path');
 
   });
 
+  gulp.task('angular-seed', function (install, remove, bubble, name) {
+
+    // Install
+    if (install) {
+      if (!name) return;
+      // Copy seed
+      var targetPath = path.join('statics/modules', name);
+      if (!bubble) targetPath = path.join('bubble', targetPath);
+      else targetPath = path.join('bubble/childs', bubble, targetPath);
+      console.log('Installing angular-seed to =>', targetPath);
+      fs.copySync( path.join('.seeds', 'angular-seed'), targetPath );
+      // Replace paths
+      var repl = require("replace");
+      repl({
+        regex: 'angular-seed',
+        replacement: name,
+        paths: [targetPath],
+        recursive: true,
+        silent: true,
+      });
+    }
+  
+  });
+
+  gulp.task('help', function () {
+    console.log('\n\n');
+    console.log('gulp bubble');
+    console.log('gulp angular-seed');
+    console.log('\n\n');
+  });
+
 // Default
-  gulp.task('default', ['help']);
+  // gulp.task('default', ['help']);
