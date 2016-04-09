@@ -22,7 +22,7 @@ var path = require('path');
 
   });
 
-  gulp.task('angular-seed', function (install, remove, bubble, name) {
+  gulp.task('front-seed', function (install, remove, seed, bubble, name) {
 
     // Install
     if (install) {
@@ -31,12 +31,12 @@ var path = require('path');
       var targetPath = path.join('statics/modules', name);
       if (!bubble) targetPath = path.join('bubble', targetPath);
       else targetPath = path.join('bubble/childs', bubble, targetPath);
-      console.log('Installing angular-seed to =>', targetPath);
-      fs.copySync( path.join('.seeds', 'angular-seed'), targetPath );
+      console.log('Installing '+seed+' to =>', targetPath);
+      fs.copySync( path.join('.seeds', seed), targetPath );
       // Replace paths
       var repl = require("replace");
       repl({
-        regex: 'angular-seed',
+        regex: seed,
         replacement: name,
         paths: [targetPath],
         recursive: true,
@@ -49,7 +49,7 @@ var path = require('path');
   gulp.task('help', function () {
     console.log('\n\n');
     console.log('gulp bubble');
-    console.log('gulp angular-seed');
+    console.log('gulp front-seed');
     console.log('\n\n');
   });
 
