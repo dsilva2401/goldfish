@@ -6,7 +6,7 @@ var inquirer = require('inquirer');
 var methods = require('./build');
 
 // Tasks
-	gulp.task('bubble', function (install, remove, name) {
+	gulp.task('bubble', function () {
 		inquirer.prompt([
 			{
 				type: 'list',
@@ -42,13 +42,57 @@ var methods = require('./build');
 	});
 
 	gulp.task('front-module', function (install, remove, seed, bubble, name) {
-
-		// Install
-		if (install) {
-			methods.installFrontModule(seed, name, bubble);
-			return;
-		}
-	
+		var childs = fs.readdirSync('bubble/childs').filter(function (child) {
+			return (child != 'index.js');
+		});
+		childs.push('none');
+		console.log(childs);
+		inquirer.prompt([
+			{
+				type: 'list',
+				name: 'action',
+				message: 'Choose an action',
+				choices: ['install'],
+				filter: function (val) {
+					var map = {
+						install: 'installFrontModule'
+					};
+					return map[val];
+				}
+			},
+			{
+				type: 'list',
+				name: 'seed',
+				message: 'Choose a seed',
+				choices: ['angular-seed', 'console-seed']
+			},
+			{
+				type: 'input',
+				name: 'name',
+				message: 'Type the module name'
+			},
+			{
+				type: 'list',
+				name: 'bubble',
+				message: 'Choose an bubble',
+				choices: childs,
+				filter: function (val) {
+					return ( val=='none' ? null : val );
+				}
+			},
+			{
+				type: 'confirm',
+				name: 'confirm',
+				message: 'Confirm this action?',
+				default: true
+			}
+		]).then(function (answers) {
+			if (!answers.confirm) {
+				console.log('Operation cancelled');
+				return;
+			}
+			methods[answers.action](answers.seed, answers.name, answers.bubble);
+		});
 	});
 
 	gulp.task('default', function () {
