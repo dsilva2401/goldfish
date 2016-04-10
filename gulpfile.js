@@ -1,57 +1,65 @@
 var gulp = require('gulp-param')(require('gulp'), process.argv);
 var fs = require('fs-extra');
 var path = require('path');
+var repl = require('replace');
+var inquirer = require('inquirer');
+var methods = require('./build');
 
-// Bubble seeds manager
-  gulp.task('bubble', function (install, remove, name) {
-    if (!install || remove) return;
-    var targetPath = path.join('bubble', 'childs', name);
+// Tasks
+	gulp.task('bubble', function (install, remove, name) {
+		inquirer.prompt([
+			{
+				type: 'list',
+				name: 'action',
+				message: 'Choose an action',
+				choices: ['install', 'remove'],
+				filter: function (val) {
+					var map = {
+						install: 'installBubble',
+						remove: 'removeBubble'
+					};
+					return map[val];
+				}
+			},
+			{
+				type: 'input',
+				name: 'name',
+				message: 'Type the bubble name'
+			},
+			{
+				type: 'confirm',
+				name: 'confirm',
+				message: 'Confirm this action?',
+				default: true
+			}
+		]).then(function (answers) {
+			if (!answers.confirm) {
+				console.log('Operation cancelled');
+				return;
+			}
+			methods[answers.action](answers.name);
+		});
+	});
 
-    // Install
-      if (install) {
-        console.log('Installing bubble to =>', targetPath);
-        fs.copySync( path.join('.seeds', 'bubble'), targetPath );
-        return;
-      }
-  
-    // Remove
-      if (remove) {
-        console.log('Not available');
-        // fs.removeSync(targetPath);
-      }
+	gulp.task('front-module', function (install, remove, seed, bubble, name) {
 
-  });
+		// Install
+		if (install) {
+			methods.installFrontModule(seed, name, bubble);
+			return;
+		}
+	
+	});
 
-  gulp.task('front-seed', function (install, remove, seed, bubble, name) {
-
-    // Install
-    if (install) {
-      if (!name) return;
-      // Copy seed
-      var targetPath = path.join('statics/modules', name);
-      if (!bubble) targetPath = path.join('bubble', targetPath);
-      else targetPath = path.join('bubble/childs', bubble, targetPath);
-      console.log('Installing '+seed+' to =>', targetPath);
-      fs.copySync( path.join('.seeds', seed), targetPath );
-      // Replace paths
-      var repl = require("replace");
-      repl({
-        regex: seed,
-        replacement: name,
-        paths: [targetPath],
-        recursive: true,
-        silent: true,
-      });
-    }
-  
-  });
-
-  gulp.task('help', function () {
-    console.log('\n\n');
-    console.log('gulp bubble');
-    console.log('gulp front-seed');
-    console.log('\n\n');
-  });
-
-// Default
-  // gulp.task('default', ['help']);
+	gulp.task('default', function () {
+		inquirer.prompt([
+			{
+				type: 'list',
+				name: 'task',
+				message: 'What task do you want to execute?',
+				choices: ['bubble', 'front-module']
+			}
+		]).then(function (answers) {
+			gulp.start(answers.task)
+		});
+	});
