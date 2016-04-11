@@ -8,5 +8,6 @@ module.exports = function ($libs) {
 	$libs.methodOverride = require('method-override');
 	$libs.compress = require('compression');
 	$libs.morgan = require('morgan');
+	$libs.Q = require('q');
 
 }
