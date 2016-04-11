@@ -1,13 +1,17 @@
 module.exports = function ($libs, $interfaces, $logger, $databases) {
 
 	// Dependencies
-	var $ = {};
-	$.libs = $libs;
-	$.logger = $logger;
-	$.databases = $databases;
+		var $ = {};
+		$.libs = $libs;
+		$.logger = $logger;
+		$.databases = $databases;
 
 	// Define interfaces
-	$interfaces.libs = require('./libs')($);
-	$interfaces.databases = require('./databases')($);
+		$libs.fs.readdirSync(__dirname).filter(function (elem) {
+			return (elem != 'index.js');
+		}).forEach(function (dir) {
+			dir = dir.split('.')[0];
+			$interfaces[dir] = require('./'+dir)($)
+		});
 
 }
