@@ -1,6 +1,13 @@
 module.exports = function (db, DataTypes) {
 
-// Models
+	// System ---
+		var Configuration = db.define('Configuration', {
+			sys: DataTypes.BOOLEAN,
+			inviteOnly: DataTypes.BOOLEAN
+		});
+	// ---
+
+	// People ---
 		var Person = db.define('Person', {
 			name: DataTypes.STRING,
 			lastname: DataTypes.STRING,
@@ -18,7 +25,9 @@ module.exports = function (db, DataTypes) {
 		var SessionKey = db.define('SessionKey', {
 			key: { type: DataTypes.STRING, unique: true, allowNull: false }
 		});
+	// ---
 
+	// Logs ---
 		var SuccessResponseLog = db.define('SuccessResponseLog', {
 			PersonId: DataTypes.INTEGER,
 			method: DataTypes.STRING,
@@ -49,6 +58,7 @@ module.exports = function (db, DataTypes) {
 			params: DataTypes.TEXT,
 			status: DataTypes.STRING
 		});
+	// ---
 
 
 	// Relations

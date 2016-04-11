@@ -3,5 +3,3 @@ var bubble = require('./bubble');
 
 // Start bubble
 bubble.up();
-
-// console.log(bubble)

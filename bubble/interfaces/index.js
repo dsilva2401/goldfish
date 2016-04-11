@@ -1,10 +1,11 @@
-module.exports = function ($libs, $interfaces, $logger, $databases) {
+module.exports = function ($libs, $interfaces, $logger, $databases, $agents) {
 
 	// Dependencies
 		var $ = {};
 		$.libs = $libs;
 		$.logger = $logger;
 		$.databases = $databases;
+		$.agents = $agents;
 
 	// Define interfaces
 		$libs.fs.readdirSync(__dirname).filter(function (elem) {

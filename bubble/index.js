@@ -23,11 +23,14 @@
 // Setup databases
 	bubble.run(require('./databases'));
 
-// Setup http-routes
-	bubble.run(require('./http-routes'));
+// Setup agents
+	bubble.run(require('./agents'));	
 
 // Init bubble
 	bubble.run(require('./init'));
+
+// Setup http-routes
+	bubble.run(require('./http-routes'));
 
 // Include childs
 	var childs = require('./childs')(bubble);
