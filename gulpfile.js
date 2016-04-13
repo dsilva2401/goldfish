@@ -64,7 +64,7 @@ var methods = require('./build');
 				type: 'list',
 				name: 'seed',
 				message: 'Choose a seed',
-				choices: ['angular-seed', 'console-seed']
+				choices: ['angular-seed', 'console-seed', 'form-seed']
 			},
 			{
 				type: 'input',

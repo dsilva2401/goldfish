@@ -1,0 +1,31 @@
+<div class="cover app-background"></div>
+
+<form class="register-form" ng-submit="methods.submit()">
+
+	<h3>Form</h3>
+
+	<div class="input-container">
+		<span ng-if="models.input">Input Details</span>
+		<input placeholder="Input Details" type="text" ng-model="models.input" required>
+	</div>
+
+	<div class="input-container">
+		<span>Select input</span>
+		<select placeholder="Select input" ng-model="models.select" required>
+			<option value="">-</option>
+			<option value="m">Male</option>
+			<option value="f">Female</option>
+		</select>
+	</div>
+
+	<div class="input-container">
+		<span ng-if="models.repassword">Confirm Password</span>
+		<input placeholder="Confirm Password" type="password" ng-model="models.repassword" required>
+		<span ng-if="models.invalidPassword" class="error">Password doesn't match</span>
+	</div>
+
+	<div class="input-container">
+		<button>Button</button>
+	</div>
+
+</form>
