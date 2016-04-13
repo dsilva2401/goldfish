@@ -8,5 +8,11 @@ module.exports = function ($) {
 		);
 	}
 
+	Views.register = function (req, res, next) {
+		res.sendFile(
+			Path.join(__dirname,'../../statics/modules/register/index.html')
+		);
+	}
+
 	return Views;
 }

@@ -1,0 +1,55 @@
+<div class="cover app-background"></div>
+
+<div class="cover" style="overflow: auto;">
+	<form class="register-form" ng-submit="methods.submit()">
+
+		<h3>Register</h3>
+
+		<div class="input-container">
+			<span ng-if="models.name">Name</span>
+			<input placeholder="Name" type="text" ng-model="models.name" required>
+		</div>
+
+		<div class="input-container">
+			<span ng-if="models.lastname">Lastname</span>
+			<input placeholder="Lastname" type="text" ng-model="models.lastname" required>
+		</div>
+
+		<div class="input-container">
+			<span ng-if="models.email">Email</span>
+			<input placeholder="Email" type="email" ng-model="models.email" required>
+		</div>
+
+		<div class="input-container">
+			<span ng-if="models.phone">Phone</span>
+			<input placeholder="Phone" type="text" ng-model="models.phone" required>
+		</div>
+
+		<div class="input-container">
+			<span>Sex</span>
+			<select placeholder="Sex" ng-model="models.sex" required>
+				<option value="">-</option>
+				<option value="m">Male</option>
+				<option value="f">Female</option>
+			</select>
+		</div>
+
+		<div class="input-container">
+			<span ng-if="models.password">Password</span>
+			<input placeholder="Password" type="password" ng-model="models.password" required>
+			<span ng-if="models.invalidPassword" class="error">Password doesn't match</span>
+		</div>
+
+		<div class="input-container">
+			<span ng-if="models.repassword">Confirm Password</span>
+			<input placeholder="Confirm Password" type="password" ng-model="models.repassword" required>
+			<span ng-if="models.invalidPassword" class="error">Password doesn't match</span>
+		</div>
+
+		<div class="input-container">
+			<button>Button</button>
+		</div>
+
+	</form>
+
+</div>
