@@ -1,0 +1,20 @@
+extends ../../views/base.jade
+
+block title
+	title Admin
+
+block libsStyles
+
+block appStyles
+	link(rel="stylesheet",href="/statics/modules/admin/app/app.css")
+
+block content
+	div(ng-app="app", app-container).cover
+
+block libsScripts
+
+block appScripts
+	script(src="/statics/modules/admin/app/app.js")
+	script(src="/statics/modules/admin/app/app.config.js")
+	script(src="/statics/modules/admin/app/app.controller.js")
+	script(src="/statics/modules/admin/app/app.directive.js")

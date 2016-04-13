@@ -1,0 +1,22 @@
+extends ../../views/base.jade
+
+block title
+	title Webmaster
+
+block libsStyles
+
+block appStyles
+	link(rel="stylesheet",href="/statics/modules/webmaster/app/app.css")
+	link(rel="stylesheet",href="/statics/modules/webmaster/app/style.css")
+
+block content
+	div(ng-app="app", app-container).cover
+
+block libsScripts
+
+block appScripts
+	script(src="/statics/modules/webmaster/app/app.js")
+	script(src="/statics/modules/webmaster/app/app.config.js")
+	script(src="/statics/modules/webmaster/app/app.controller.js")
+	script(src="/statics/modules/webmaster/app/app.directive.js")
+	script(src="/statics/modules/webmaster/basics/config.controller.js")

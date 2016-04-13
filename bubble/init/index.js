@@ -1,5 +1,8 @@
 module.exports = function ($config, $app, $express, $interfaces) {
 
+	// Set views engine
+	$app.set('view engine', 'jade');
+
 	// Set parsers
 	$app.use( $interfaces.libs('bodyParser').json() );
 	$app.use( $interfaces.libs('bodyParser').urlencoded({ extended: true }) );

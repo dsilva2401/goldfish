@@ -3,14 +3,14 @@ module.exports = function ($) {
 	var Views = {};
 
 	Views.webmaster = function (req, res, next) {
-		res.sendFile(
-			Path.join(__dirname,'../../statics/modules/webmaster/index.html')
+		res.render(
+			Path.join(__dirname,'../../statics/modules/webmaster/index')
 		);
 	}
 
 	Views.register = function (req, res, next) {
-		res.sendFile(
-			Path.join(__dirname,'../../statics/modules/register/index.html')
+		res.render(
+			Path.join(__dirname, '../../statics/modules/register/index')
 		);
 	}
 
