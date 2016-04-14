@@ -1,0 +1,20 @@
+extends ../../views/base.jade
+
+block title
+	title App
+
+block libsStyles
+
+block appStyles
+	link(rel="stylesheet",href="/statics/modules/angular-seed/app/app.css")
+
+block content
+	div(ng-app="app", app-container).cover
+
+block libsScripts
+
+block appScripts
+	script(src="/statics/modules/angular-seed/app/app.js")
+	script(src="/statics/modules/angular-seed/app/app.config.js")
+	script(src="/statics/modules/angular-seed/app/app.controller.js")
+	script(src="/statics/modules/angular-seed/app/app.directive.js")
