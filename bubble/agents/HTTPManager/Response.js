@@ -11,7 +11,7 @@ module.exports = function (HTTPManager, $) {
 
 		r.error = function (err) {
 			var eType;
-			res.status(res.statusCode || 500);
+			if (res.statusCode == 200) res.status(500);
 			res.json({
 				error: err 
 			});

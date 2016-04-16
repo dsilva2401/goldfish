@@ -9,7 +9,7 @@
 				resources: {
 
 					Register: {
-						route: '/auth/v1/register'
+						route: '/access/api/register'
 					}
 				}
 			});

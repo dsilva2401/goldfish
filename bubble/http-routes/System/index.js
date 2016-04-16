@@ -1,5 +1,4 @@
 module.exports = function ($) {
-	var db = $.interfaces.databases('sequelize');
 	var HTTPManager = $.interfaces.agents('HTTPManager');
 	var SystemManager = $.interfaces.agents('SystemManager');
 	var System = {};

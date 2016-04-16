@@ -34,3 +34,6 @@ node_modules
 
 # Bower libs
 bower_components
+
+# Database
+data/*.sqlite

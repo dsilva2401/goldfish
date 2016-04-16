@@ -8,7 +8,29 @@
 
 		// Methods
 			$scope.methods.submit = function () {
-				
+				if ($scope.models.password != $scope.models.repassword) {
+					$scope.models.invalidPassword = true;
+					return;
+				}
+				$resources.Register.post({
+					data: {
+						name: $scope.models.name,
+						lastname: $scope.models.lastname,
+						email: $scope.models.email,
+						phone: $scope.models.phone,
+						sex: $scope.models.sex,
+						password: $scope.models.password
+					}
+				})
+				// Success
+				.then(function (resp) {
+					console.log(resp);
+					$window.location.reload();
+				})
+				// Error
+				.catch(function (resp) {
+					console.warn('Error on register', resp);
+				})
 			}
 		
 		// Init
