@@ -9,5 +9,6 @@ module.exports = function ($libs) {
 	$libs.compress = require('compression');
 	$libs.morgan = require('morgan');
 	$libs.Q = require('q');
+	$libs.md5 = require('md5');
 
 }
