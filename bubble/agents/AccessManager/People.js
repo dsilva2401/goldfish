@@ -8,7 +8,19 @@ module.exports = function (AccessManager, $) {
 		
 		db.models.Person.create(personData)
 		// Success
-		.then( deferred.resolve )
+		.then(function (person) {
+			db.models.BasicCredential.create({
+				PersonId: person.id,
+				email: person.dataValues.email,
+				password: personData.password
+			})
+			// Success
+			.then(function () {
+				deferred.resolve(1);
+			})
+			// Error
+			.catch( deferred.reject );
+		})
 		// Error
 		.catch( deferred.reject );
 

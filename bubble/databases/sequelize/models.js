@@ -17,7 +17,7 @@ module.exports = function (db, DataTypes) {
 			active: { type: DataTypes.BOOLEAN, defaultValue: true }
 		});
 
-		var Credential = db.define('Credential', {
+		var BasicCredential = db.define('BasicCredential', {
 			email: { type: DataTypes.STRING, unique: true },
 			password: DataTypes.STRING
 		});
@@ -62,7 +62,7 @@ module.exports = function (db, DataTypes) {
 
 
 	// Relations
-		Credential.belongsTo( Person );
+		BasicCredential.belongsTo( Person );
 		SessionKey.belongsTo( Person );
 
 }
