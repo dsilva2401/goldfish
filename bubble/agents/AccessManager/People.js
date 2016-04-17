@@ -1,5 +1,6 @@
 module.exports = function (AccessManager, $) {
 	var Q = $.interfaces.libs('Q');
+	var md5 = $.interfaces.libs('md5');
 	var db = $.interfaces.databases('sequelize');
 	var People = {};
 
