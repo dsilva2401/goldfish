@@ -13,7 +13,7 @@ module.exports = function (AccessManager, $) {
 			db.models.BasicCredential.create({
 				PersonId: person.id,
 				email: person.dataValues.email,
-				password: personData.password
+				password: md5(personData.password)
 			})
 			// Success
 			.then(function () {
