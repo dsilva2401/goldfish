@@ -22,6 +22,7 @@ module.exports = function ($express, $app, $interfaces ) {
 	// Views
 		viewsRouter.get('/wmaster', Views.webmaster);
 		viewsRouter.get('/register', Views.register);
+		viewsRouter.get('/login', Views.login);
 
 	// Access
 		accessRouter.post('/register', Access.register);

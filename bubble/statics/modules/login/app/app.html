@@ -1,0 +1,24 @@
+<div class="cover app-background"></div>
+
+<div class="cover" style="overflow: auto;">
+	<form class="register-form" ng-submit="methods.submit()">
+
+		<h3>Login</h3>
+
+		<div class="input-container">
+			<span ng-if="models.email">Email</span>
+			<input placeholder="Email" type="email" ng-model="models.email" required>
+		</div>
+
+		<div class="input-container">
+			<span ng-if="models.password">Password</span>
+			<input placeholder="Password" type="password" ng-model="models.password" required>
+			<span ng-if="models.invalidPassword" class="error">Invalid password</span>
+		</div>
+
+		<div class="input-container">
+			<button>Login</button>
+		</div>
+
+	</form>
+</div>

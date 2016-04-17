@@ -14,5 +14,11 @@ module.exports = function ($) {
 		);
 	}
 
+	Views.login = function (req, res, next) {
+		res.render(
+			Path.join(__dirname, '../../statics/modules/login/index')
+		);
+	}
+
 	return Views;
 }
