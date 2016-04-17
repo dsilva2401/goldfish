@@ -10,7 +10,7 @@ module.exports = function (AccessManager, $) {
 		db.models.Person.create(personData)
 		// Success
 		.then(function (person) {
-			db.models.BasicCredential.create({
+			db.models.Credential.create({
 				PersonId: person.id,
 				email: person.dataValues.email,
 				password: md5(personData.password)
@@ -26,6 +26,20 @@ module.exports = function (AccessManager, $) {
 		.catch( deferred.reject );
 
 		return deferred.promise;
+	}
+
+	People.verifyCredentials = function (credentials) {
+		var deferred = Q.defer();
+		
+		db.models.Credential.find({
+			where: { email: credentials.email, password: credentials.password }
+		})
+		// Success
+		.then( deferred.resolve )
+		// Error
+		.catch( deferred.reject );
+
+		return deferred.promise;	
 	}
 
 	return People;
