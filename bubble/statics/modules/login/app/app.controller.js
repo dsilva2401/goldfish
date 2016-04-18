@@ -8,7 +8,20 @@
 
 		// Methods
 			$scope.methods.submit = function () {
-				
+				$resources.Login.post({
+					data: {
+						email: $scope.models.email,
+						password: $scope.models.password
+					}
+				})
+				// Success
+				.then(function (resp) {
+					$window.location.reload();
+				})
+				// Error
+				.catch(function (resp) {
+					console.warn('Error on login', resp);
+				})
 			}
 		
 		// Init

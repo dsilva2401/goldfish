@@ -17,7 +17,7 @@ module.exports = function (AccessManager, $) {
 			})
 			// Success
 			.then(function () {
-				deferred.resolve(1);
+				deferred.resolve(person);
 			})
 			// Error
 			.catch( deferred.reject );
@@ -32,7 +32,10 @@ module.exports = function (AccessManager, $) {
 		var deferred = Q.defer();
 		
 		db.models.Credential.find({
-			where: { email: credentials.email, password: credentials.password }
+			where: {
+				email: credentials.email,
+				password: md5(credentials.password)
+			}
 		})
 		// Success
 		.then( deferred.resolve )

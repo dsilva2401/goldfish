@@ -8,8 +8,8 @@
 			$resourcesProvider.init({
 				resources: {
 
-					Register: {
-						route: '/auth/v1/register'
+					Login: {
+						route: '/access/api/login'
 					}
 				}
 			});

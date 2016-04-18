@@ -5,7 +5,7 @@ module.exports = function ($interfaces, $agents) {
 		$.interfaces = $interfaces;
 
 	// Agents
-		$agents.HTTPManager = require('./HTTPManager')($);
 		$agents.SystemManager = require('./SystemManager')($);
+		$agents.HTTPManager = require('./HTTPManager')($);
 		$agents.AccessManager = require('./AccessManager')($);
 }
