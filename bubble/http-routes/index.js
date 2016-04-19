@@ -33,7 +33,7 @@ module.exports = function ($express, $app, $interfaces ) {
 		accessRouter.post('/login', Access.login);
 
 	// Set routers
-		$app.use('/', middleRouter);	
+		$app.use('/', middleRouter);
 		$app.use('/', viewsRouter);
 		$app.use('/system/api', systemRouter);
 		$app.use('/access/api', accessRouter);

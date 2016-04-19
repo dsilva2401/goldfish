@@ -14,5 +14,5 @@ module.exports = function ($libs, $interfaces, $logger, $databases, $agents, $ch
 			dir = dir.split('.')[0];
 			$interfaces[dir] = require('./'+dir)($)
 		});
-		
+
 }
