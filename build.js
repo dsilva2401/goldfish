@@ -15,6 +15,14 @@ var methods = {};
 		var targetPath = path.join('bubble', 'childs', bubbleName);
 		console.log('Installing bubble to =>', targetPath);
 		fs.copySync( path.join('.seeds', 'bubble'), targetPath );
+		// Replace paths
+			repl({
+				regex: 'REPLACE_THIS',
+				replacement: bubbleName,
+				paths: [targetPath],
+				recursive: true,
+				silent: true,
+			});
 	}
 
 	methods.removeBubble = function (bubbleName) {

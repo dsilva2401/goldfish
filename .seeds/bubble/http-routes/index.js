@@ -4,7 +4,7 @@ module.exports = function ($express, $app, $interfaces, $parent ) {
 		var HTTPManager = $parent.interfaces.agents('HTTPManager');
 
 	// Bubble Router
-		var bubbleRouter = HTTPManager.BubbleRouter.new('bubbleName');
+		var bubbleRouter = HTTPManager.BubbleRouter.new('REPLACE_THIS');
 
 	// Controllers dependencies
 		var $ = {};
