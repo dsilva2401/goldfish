@@ -1,34 +1,40 @@
-module.exports = function ($express, $app, $interfaces ) {
+module.exports = function ($express, $app, $interfaces, $parent ) {
+
+		// Agents
+		var HTTPManager = $parent.interfaces.agents('HTTPManager');
+
+	// Bubble Router
+		var bubbleRouter = HTTPManager.BubbleRouter.new('bubbleName');
 
 	// Controllers dependencies
 		var $ = {};
-		$.interfaces = $interfaces;
+		$.parent = $parent;
 
 	// Routes
-		var viewsRouter = $express.Router();
-		var apiRouter = $express.Router();
+		var middleRouter = bubbleRouter.createRouter('middleRouter');
+		var viewsRouter = bubbleRouter.createRouter('viewsRouter');
+		var appRouter = bubbleRouter.createRouter('appRouter');
 
 	// Controllers
-		/*var Views = require('./Views')($);
-		var API = require('./API')($);*/
+		// var Views = require('./Views')($);
 
 	// Middleware
-		
-	// API
-		/*apiRouter.get('/server-error/:errorId', API.Logs.getServerErrorDetails);
-		apiRouter.get('/users', API.Users.getAll);*/
+		/*middleRouter.all('beforeAll', '/*',
+			Access.getSession);*/
 
 	// Views
-		/*viewsRouter.get('/wmaster', Auth.WebmasterAccess.verifySession, Views.webmaster );
-		viewsRouter.get('/register', Auth.Access.redirectIfAlreadyLoggedIn('/'), Views.register );
-		viewsRouter.get('/login', Auth.Access.redirectIfAlreadyLoggedIn('/'), Views.login );*/
-		// viewsRouter.get('/app', Auth.Access.redirectIfNotLoggedIn('/login'), Views.admin );
-		viewsRouter.get('/', function (req, res, next) {
-			res.end(':D'); 
-		});
+		/*viewsRouter.get('xView', '/',
+			Access.redirectIfNotSession('/login'), Views.webmaster);
+		*/
+		viewsRouter.get('happyView', '/',
+			function (req, res, next) {
+				res.end(':D');
+			});
+
 
 	// Set routers
-		$app.use( '/', viewsRouter );
-		$app.use( '/api/v1', apiRouter );
+		$app.use('/', middleRouter.router);
+		$app.use('/', viewsRouter.router);
+		$app.use('/app/api', appRouter.router);
 
 }

@@ -1,4 +1,4 @@
-module.exports = function ($config, $interfaces, $databases) {
+module.exports = function ($config, $interfaces, $databases, $parent) {
 
 	// Dependencies
 		var $ = {};
@@ -6,7 +6,7 @@ module.exports = function ($config, $interfaces, $databases) {
 		$.interfaces = $interfaces;
 
 	// Databases
-		$interfaces.libs('fs').readdirSync(__dirname).filter(function (elem) {
+		$parent.interfaces.libs('fs').readdirSync(__dirname).filter(function (elem) {
 			return (elem != 'index.js');
 		}).forEach(function (dir) {
 			$databases[dir] = require('./'+dir)($)

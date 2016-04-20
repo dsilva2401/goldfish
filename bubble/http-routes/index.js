@@ -1,15 +1,21 @@
 module.exports = function ($express, $app, $interfaces ) {
 
+	// Agents
+		var HTTPManager = $interfaces.agents('HTTPManager');
+
+	// Bubble Router
+		var bubbleRouter = HTTPManager.BubbleRouter.new();
+
 	// Controllers dependencies
 		var $ = {};
 		$.interfaces = $interfaces;
 
 	// Routes
-		var middleRouter = $express.Router();
-		var viewsRouter = $express.Router();
-		var systemRouter = $express.Router();
-		var accessRouter = $express.Router();
-		var appRouter = $express.Router();
+		var middleRouter = bubbleRouter.createRouter('middleRouter');
+		var viewsRouter = bubbleRouter.createRouter('viewsRouter');
+		var systemRouter = bubbleRouter.createRouter('systemRouter');
+		var accessRouter = bubbleRouter.createRouter('accessRouter');
+		var appRouter = bubbleRouter.createRouter('appRouter');
 
 	// Controllers
 		var Views = require('./Views')($);
@@ -17,26 +23,34 @@ module.exports = function ($express, $app, $interfaces ) {
 		var Access = require('./Access')($);
 
 	// Middleware
-		middleRouter.all('/*', Access.getSession);
+		middleRouter.all('beforeAll', '/*',
+			Access.getSession);
 
 	// System
-		systemRouter.put('/config', System.updateConfig);
-		systemRouter.get('/config', System.getConfig);
+		systemRouter.put('updateConfig', '/config',
+			System.updateConfig);
+		systemRouter.get('getConfig', '/config',
+			System.getConfig);
 
 	// Views
-		viewsRouter.get('/wmaster', Access.redirectIfNotSession('/login'), Views.webmaster);
-		viewsRouter.get('/register', Access.redirectIfSession('/'), Views.register);
-		viewsRouter.get('/login', Access.redirectIfSession('/'), Views.login);
+		viewsRouter.get('webmasterView', '/wmaster',
+			Access.redirectIfNotSession('/login'), Views.webmaster);
+		viewsRouter.get('registerView', '/register',
+			Access.redirectIfSession('/'), Views.register);
+		viewsRouter.get('loginView', '/login',
+			Access.redirectIfSession('/'), Views.login);
 
 	// Access
-		accessRouter.post('/register', Access.register);
-		accessRouter.post('/login', Access.login);
+		accessRouter.post('submitRegister', '/register',
+			Access.register);
+		accessRouter.post('submitCredentials', '/login',
+			Access.login);
 
 	// Set routers
-		$app.use('/', middleRouter);
-		$app.use('/', viewsRouter);
-		$app.use('/system/api', systemRouter);
-		$app.use('/access/api', accessRouter);
-		$app.use('/app/api', appRouter);
+		$app.use('/', middleRouter.router);
+		$app.use('/', viewsRouter.router);
+		$app.use('/system/api', systemRouter.router);
+		$app.use('/access/api', accessRouter.router);
+		$app.use('/app/api', appRouter.router);
 
 }
