@@ -3,6 +3,7 @@ module.exports = function ($) {
 
 	SystemManager.Useful = require('./Useful')(SystemManager, $);
 	SystemManager.Configuration = require('./Configuration')(SystemManager, $);
+	SystemManager.Init = require('./Init')(SystemManager, $);
 
 	return SystemManager;
 }
