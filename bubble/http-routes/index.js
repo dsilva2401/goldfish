@@ -1,4 +1,4 @@
-module.exports = function ($express, $app, $interfaces ) {
+module.exports = function ($express, $app, $interfaces, $config ) {
 
 	// Agents
 		var HTTPManager = $interfaces.agents('HTTPManager');
@@ -9,6 +9,7 @@ module.exports = function ($express, $app, $interfaces ) {
 	// Controllers dependencies
 		var $ = {};
 		$.interfaces = $interfaces;
+		$.config = $config;
 
 	// Routes
 		var middleRouter = bubbleRouter.createRouter('middleRouter');
@@ -18,6 +19,7 @@ module.exports = function ($express, $app, $interfaces ) {
 		var appRouter = bubbleRouter.createRouter('appRouter');
 
 	// Controllers
+		var Roles = new HTTPManager.GenericControllers.SequelizeBasic('Role', 'roleId');
 		var Views = require('./Views')($);
 		var System = require('./System')($);
 		var Access = require('./Access')($);
@@ -31,6 +33,12 @@ module.exports = function ($express, $app, $interfaces ) {
 			System.updateConfig);
 		systemRouter.get('getConfig', '/config',
 			System.getConfig);
+		systemRouter.get('getChilds', '/childs',
+			System.getChilds);
+		systemRouter.get('getRootViews', '/views',
+			System.getViews);
+		systemRouter.get('getChildViews', '/childs/:childName/views',
+			System.getViews);
 
 	// Views
 		viewsRouter.get('webmasterView', '/wmaster',
@@ -45,6 +53,18 @@ module.exports = function ($express, $app, $interfaces ) {
 			Access.register);
 		accessRouter.post('submitCredentials', '/login',
 			Access.login);
+		accessRouter.get('getRolesPermissions', '/roles/permissions',
+			Access.getRolesPermissions);
+		accessRouter.put('updateRolePermission', '/roles/:roleId/permissions',
+			Access.updateRolePermission);
+		accessRouter.post('createRole', '/roles',
+			Roles.create);
+		accessRouter.put('updateRole', '/roles/:roleId',
+			Roles.updateOne);
+		accessRouter.get('getRoles', '/roles',
+			Roles.getAll);
+		accessRouter.delete('deleteRole', '/roles/:roleId',
+			Roles.delete);
 
 	// Set routers
 		$app.use('/', middleRouter.router);

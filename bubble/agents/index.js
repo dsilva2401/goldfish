@@ -1,10 +1,11 @@
-module.exports = function ($interfaces, $agents, $app, $express) {
+module.exports = function ($interfaces, $agents, $app, $express, $config) {
 
 	// Dependencies
 		var $ = {};
 		$.interfaces = $interfaces;
 		$.app = $app;
 		$.express = $express;
+		$.config = $config;
 
 	// Agents
 		$agents.SystemManager = require('./SystemManager')($);

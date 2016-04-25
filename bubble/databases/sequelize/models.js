@@ -25,6 +25,19 @@ module.exports = function (db, DataTypes) {
 		var SessionKey = db.define('SessionKey', {
 			key: { type: DataTypes.STRING, unique: true, allowNull: false }
 		});
+
+		var Role = db.define('Role', {
+			name: { type: DataTypes.STRING, unique: true, allowNull: false },
+			identifier: { type: DataTypes.STRING, unique: true, allowNull: false },
+			chain: DataTypes.STRING,
+			hidden: { type: DataTypes.BOOLEAN, defaultValue: false }
+		});
+
+		var RolePermission = db.define('RolePermission', {
+			viewName: { type: DataTypes.STRING, allowNull: false },
+			status: DataTypes.BOOLEAN
+		});		
+
 	// ---
 
 	// Logs ---
@@ -64,5 +77,6 @@ module.exports = function (db, DataTypes) {
 	// Relations
 		Credential.belongsTo( Person );
 		SessionKey.belongsTo( Person );
+		RolePermission.belongsTo( Role );
 
 }

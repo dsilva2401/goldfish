@@ -1,4 +1,5 @@
 module.exports = function (HTTPManager, $) {
+	var Q = $.interfaces.libs('Q');
 	var bubbleRouter = {};
 
 	// Attributes
@@ -34,7 +35,7 @@ module.exports = function (HTTPManager, $) {
 		}
 		bubbleRouter.new = function (bubbleName) {		
 			// Init
-				if (bubbleName) bubbleRouter.childs[bubbleName] = { routers: {} };
+				if (bubbleName) bubbleRouter.childs[bubbleName] = { name: bubbleName, routers: {} };
 			// Attributes
 				var br = {};
 			// Methods
@@ -47,7 +48,30 @@ module.exports = function (HTTPManager, $) {
 			// Export
 				return br;
 		}
-
+		bubbleRouter.getChilds = function () {
+			var childs = [];
+			Object.keys(bubbleRouter.childs).forEach(function (childName) {
+				childs.push(bubbleRouter.childs[childName]);
+			});
+			return childs;
+		}
+		bubbleRouter.getViews = function (bubble) {
+			var deferred = Q.defer();
+			if (bubble && !bubbleRouter.childs[bubble]) {
+				deferred.reject({
+					details: 'Error: Child \''+bubble+'\' not defined'
+				})
+				return;
+			}
+			var routers = (bubble) ? bubbleRouter.childs[bubble].routers : bubbleRouter.routers ;
+			var viewsRouter = routers.viewsRouter || {};
+			var routes = [];
+			Object.keys(viewsRouter.routes).forEach(function (routeName) {
+				routes.push( viewsRouter.routes[routeName] );
+			});
+			deferred.resolve(routes)
+			return deferred.promise;
+		}
 
 	return bubbleRouter;
 }

@@ -76,5 +76,23 @@ module.exports = function ($) {
     	}
     }
 
+    Access.updateRolePermission = function (req, res, next) {
+        var response = new HTTPManager.Response(req, res);
+        AccessManager.Roles.updatePermission(req.params.roleId, req.body.viewName, req.body.status)
+        // Success
+        .then( response.success )
+        // Error
+        .catch( response.error );
+    }
+
+    Access.getRolesPermissions = function (req, res, next) {
+        var response = new HTTPManager.Response(req, res);
+        AccessManager.Roles.getPermissions()
+        // Success
+        .then( response.success )
+        // Error
+        .catch( response.error );
+    }
+
 	return Access;
 }

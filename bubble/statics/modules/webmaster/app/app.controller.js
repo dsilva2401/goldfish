@@ -14,6 +14,15 @@
 						name: 'Configuration',
 						state: 'basics.configuration'
 					}]
+				}, {
+					name: 'Roles',
+					submodules: [{
+						name: 'Manage',
+						state: 'roles.manage'
+					},{
+						name: 'Permissions',
+						state: 'roles.permissions'
+					}]
 				}]
 			}
 			$scope.methods.goToSubModule = function (state) {

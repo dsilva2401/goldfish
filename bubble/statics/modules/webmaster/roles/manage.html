@@ -1,0 +1,63 @@
+
+<h3>Manage Roles</h3>
+
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Identifier</th>
+		<th></th>
+	</tr>
+	<tr ng-repeat="r in models.roles">
+		<td>
+			<span ng-if="r.id!=models.currentRoleId">{{ r.name }}</span>
+			<input
+				ng-if="r.id==models.currentRoleId"
+				ng-model="models.currentRoleName"
+			>
+		</td>
+		<td>
+			<span ng-if="r.id!=models.currentRoleId">{{ r.identifier }}</span>
+			<input
+				ng-if="r.id==models.currentRoleId"
+				ng-model="models.currentRoleIdentifier"
+			>
+		</td>
+		<td>
+			<button
+				ng-if="r.id!=models.currentRoleId"
+				ng-click="methods.focusRoleToModify(r);"
+			>Edit</button>
+			<button
+				ng-if="r.id!=models.currentRoleId"
+				ng-click="methods.deleteRole(r)"
+			>Delete</button>
+			<button
+				ng-if="r.id==models.currentRoleId"
+				ng-click="methods.modifyRole();"
+			>Save</button>
+			<button
+				ng-if="r.id==models.currentRoleId"
+				ng-click="methods.blurRoleToModify()"
+			>Cancel</button>
+		</td>
+	</tr>
+</table>
+
+<div ng-if="!models.showRoleForm">
+	<button ng-click="methods.toggleCreateRoleForm();">Create Role</button>
+</div>
+
+<div ng-if="models.showRoleForm">
+	<div>
+		<span>Role Name</span>
+		<input ng-model="models.roleName" placeholder="Role Name">
+	</div>
+	<div>
+		<span>Role Identifier</span>
+		<input ng-model="models.roleIdentifier" placeholder="Role Identifier">
+	</div>
+	<div>
+		<button ng-click="methods.createRole()">Create</button>
+		<button ng-click="methods.toggleCreateRoleForm();">Cancel</button>
+	</div>
+</div>

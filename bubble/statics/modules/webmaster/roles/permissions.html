@@ -1,0 +1,24 @@
+
+<h3>Roles Permissions</h3>
+
+<table ng-repeat="ch in models.childs">
+	<tr>
+		<td></td>
+		<th style="text-align: center;" colspan="{{ ch.views.length+1 }}">{{ ch.childName }}</th>
+	</tr>
+	<tr>
+		<td></td>
+		<td ng-repeat="v in ch.views">{{ v.name }}</td>
+	</tr>
+	<tr ng-repeat="r in models.roles">
+		<th>{{ r.name }}</th>
+		<td ng-repeat="v in ch.views" style="text-align: center;">
+			<input
+				type="checkbox"
+				ng-model="models.permissions[r.id][v.name]"
+				ng-change="methods.updatePermission(r.id, v.name)"
+			>
+		</td>
+	</tr>
+
+</table>
