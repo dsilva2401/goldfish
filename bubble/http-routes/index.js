@@ -65,6 +65,8 @@ module.exports = function ($express, $app, $interfaces, $config ) {
 			Roles.getAll);
 		accessRouter.delete('deleteRole', '/roles/:roleId',
 			Roles.delete);
+		accessRouter.get('getRegisteredPeople', '/people',
+			Access.getRegisteredPeople);
 
 	// Set routers
 		$app.use('/', middleRouter.router);

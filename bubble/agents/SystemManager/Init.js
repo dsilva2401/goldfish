@@ -9,7 +9,8 @@ module.exports = function (SystemManager, $) {
 		db.models.Person.findOrCreate({
 			where: {
 				name: 'Admin',
-				email: 'admin'
+				email: 'admin',
+				hidden: true
 			}
 		})
 		// Success

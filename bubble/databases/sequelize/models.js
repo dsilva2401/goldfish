@@ -14,6 +14,7 @@ module.exports = function (db, DataTypes) {
 			email: { type: DataTypes.STRING, unique: true },
 			sex: DataTypes.CHAR,
 			birthday: DataTypes.DATE,
+			hidden: { type: DataTypes.BOOLEAN, defaultValue: false },
 			active: { type: DataTypes.BOOLEAN, defaultValue: true }
 		});
 

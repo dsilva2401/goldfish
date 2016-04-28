@@ -69,6 +69,15 @@
 						templateUrl: '/statics/modules/webmaster/roles/permissions.html',
 						controller: 'rolesPermissionsController'
 					})
+				.state('people', {
+					url: '/people',
+					template: '<div class="cover" ui-view></div>'
+				})
+					.state('people.list', {
+						url: '/list',
+						templateUrl: '/statics/modules/webmaster/people/list.html',
+						// controller: 'rolesManageController'
+					})
 		
 
 	});

@@ -23,6 +23,12 @@
 						name: 'Permissions',
 						state: 'roles.permissions'
 					}]
+				}, {
+					name: 'People',
+					submodules: [{
+						name: 'List',
+						state: 'people.list'
+					}]
 				}]
 			}
 			$scope.methods.goToSubModule = function (state) {

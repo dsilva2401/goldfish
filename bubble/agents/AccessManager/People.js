@@ -42,7 +42,23 @@ module.exports = function (AccessManager, $) {
 		// Error
 		.catch( deferred.reject );
 
-		return deferred.promise;	
+		return deferred.promise;
+	}
+
+	People.getRegistered = function () {
+		var deferred = Q.defer();
+		
+		db.models.Person.findAll({
+			where: {
+				hidden: false
+			}
+		})
+		// Success
+		.then( deferred.resolve )
+		// Error
+		.catch( deferred.reject );
+
+		return deferred.promise;
 	}
 
 	return People;

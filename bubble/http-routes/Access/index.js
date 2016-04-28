@@ -94,5 +94,14 @@ module.exports = function ($) {
         .catch( response.error );
     }
 
+    Access.getRegisteredPeople = function (req, res, next) {
+        var response = new HTTPManager.Response(req, res);
+        AccessManager.People.getRegistered()
+        // Success
+        .then( response.success )
+        // Error
+        .catch( response.error );
+    }
+
 	return Access;
 }
